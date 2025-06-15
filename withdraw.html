@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw | Lootex</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    header {
+      padding: 2rem;
+      background: linear-gradient(90deg, #ff5f6d, #ffc371);
+      color: #111;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowBG 5s linear infinite;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form {
+      background: #222;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 0 15px rgba(255, 95, 109, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #ffcb9a;
+    }
+
+    input, select {
+      display: block;
+      width: 90%;
+      padding: 0.8rem;
+      margin: 1rem auto;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      background: #333;
+      color: white;
+    }
+
+    .btn {
+      background: #ff5f6d;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff3b4d;
+      transform: scale(1.05);
+    }
+
+    .note {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 1rem;
+    }
+
+    .balance {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lootex</h1>
+    <p>Time To Earn Money By Playing Online</p>
+  </header>
+
+  <div class="container">
+    <form onsubmit="submitWithdraw(event)">
+      <h2>Withdraw Coins</h2>
+      <div class="balance"><strong>If You Can't Have Minimum 50 Coins In IGN Wallet, You Can't Get The Withdrawal</strong></div>
+
+      <input type="text" id="ign" placeholder="Enter Your IGN (Minecraft Username)" required />
+      <input type="number" id="amount" placeholder="Enter Amount (Min ₹50)" min="50" required />
+      
+      <select id="method" required>
+        <option value="">Select Payment Method</option>
+        <option value="paytm">Paytm</option>
+        <option value="upi">UPI</option>
+      </select>
+
+      <input type="text" id="paymentId" placeholder="Enter Paytm/UPI ID" required />
+      <button class="btn" type="submit">Request Withdraw</button>
+      <p class="note">Withdrawals will be processed within 24 hours.</p>
+    </form>
+  </div>
+
+  <script>
+    function submitWithdraw(event) {
+      event.preventDefault();
+
+      const ign = document.getElementById("ign").value.trim();
+      const amount = parseInt(document.getElementById("amount").value);
+      const method = document.getElementById("method").value;
+      const paymentId = document.getElementById("paymentId").value.trim();
+
+      if (!ign || !amount || !method || !paymentId || amount < 50) {
+        alert("❌ Please fill all fields correctly. Minimum ₹50 required.");
+        return;
+      }
+
+      const withdrawData = JSON.parse(localStorage.getItem("withdrawData") || "[]");
+      withdrawData.push({
+        ign,
+        amount,
+        method,
+        paymentId,
+        time: new Date().toLocaleString()
+      });
+
+      localStorage.setItem("withdrawData", JSON.stringify(withdrawData));
+
+      alert(`✅ Withdraw request submitted for ₹${amount}\nIGN: ${ign}\nMethod: ${method}\nID: ${paymentId}`);
+
+      // Clear the form
+      document.getElementById("ign").value = "";
+      document.getElementById("amount").value = "";
+      document.getElementById("method").value = "";
+      document.getElementById("paymentId").value = "";
+    }
+  </script>
+</body>
+</html>

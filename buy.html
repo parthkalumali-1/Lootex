@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lootex | Buy Coins</title>
+  <style>
+    /* 🔧 Aapka existing CSS as it is preserved */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    header {
+      padding: 2rem;
+      background: linear-gradient(90deg, #ff5f6d, #ffc371);
+      color: #111;
+    }
+    header .logo-rgb-bg {
+      font-size: 3rem;
+      font-weight: bold;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbowBG 5s linear infinite;
+    }
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    nav {
+      background: #222;
+      padding: 1rem;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #ffc371;
+    }
+    .container {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      margin-bottom: 2rem;
+    }
+    .coin-pack {
+      background: #222;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(255, 95, 109, 0.2);
+    }
+    .coin-pack h2 {
+      margin-bottom: 0.5rem;
+      color: #ffcb9a;
+    }
+    .coin-pack p {
+      margin-bottom: 1rem;
+    }
+    .btn {
+      background: #ff5f6d;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: #ff3b4d;
+      transform: scale(1.05);
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      background: #222;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-rgb-bg">Lootex</div>
+    <p>Time To Earn Money By Playing Online</p>
+  </header>
+
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="withdraw.html">Withdraw</a>
+  </nav>
+
+  <div class="container">
+    <h1>🪙 Buy Coins</h1>
+
+    <div class="coin-pack">
+      <h2>MRP :- ₹10</h2>
+      <p>Get 10 Coins</p>
+      <button class="btn" onclick="buyCoins(10)">Buy Now</button>
+    </div>
+
+    <div class="coin-pack">
+      <h2>MRP :- ₹30</h2>
+      <p>Get 30 Coins</p>
+      <button class="btn" onclick="buyCoins(30)">Buy Now</button>
+    </div>
+
+    <div class="coin-pack">
+      <h2>MRP :- ₹50</h2>
+      <p>Get 50 Coins</p>
+      <button class="btn" onclick="buyCoins(50)">Buy Now</button>
+    </div>
+
+    <div class="coin-pack">
+      <h2>MRP :- ₹100</h2>
+      <p>Get 100 Coins</p>
+      <button class="btn" onclick="buyCoins(100)">Buy Now</button>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Lootex. All rights reserved.
+  </footer>
+
+  <!-- ✅ Cashfree Payment Script -->
+  <script>
+    function buyCoins(amount) {
+      const ign = prompt("Enter your Minecraft IGN:");
+      if (!ign || ign.trim() === "") {
+        alert("❌ IGN is required to proceed.");
+        return;
+      }
+
+      // Save IGN locally to use later
+      localStorage.setItem("lastOrderIGN", ign);
+
+      // Call backend to create Cashfree order
+      fetch("api/create-order.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ amount, ign: ign.trim() })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.payment_link) {
+          // Redirect to Cashfree payment link
+          window.location.href = data.payment_link;
+        } else {
+          alert("❌ Failed to create payment link. Try again later.");
+        }
+      })
+      .catch(err => {
+        console.error("Error:", err);
+        alert("❌ Something went wrong.");
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lootex | Time To Earn Money By Playing Online</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 2rem 1rem;
+      color: #000;
+      background: linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 400% 400%;
+      animation: rainbowBG 10s ease infinite;
+    }
+
+    @keyframes rainbowBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .logo-animated {
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    nav {
+      background-color: #181818;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #333;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ff5f6d;
+      color: #000;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      background: radial-gradient(circle, #1c1c1c, #111);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #ffcb9a;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #ff5f6d, #ff9966);
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(90deg, #ff3b4d, #ff7a5c);
+      transform: scale(1.05);
+    }
+
+    .leaderboard, .withdraw-feed {
+      margin: 3rem auto;
+      max-width: 600px;
+      background: #222;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: left;
+    }
+
+    .leaderboard h2, .withdraw-feed h2 {
+      text-align: center;
+      color: #ffcb9a;
+      margin-bottom: 1rem;
+    }
+
+    .leaderboard ul, .withdraw-feed ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .leaderboard li, .withdraw-feed li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .extra-info {
+      margin: 4rem auto;
+      max-width: 700px;
+      background: #1c1c1c;
+      padding: 2rem;
+      border-radius: 10px;
+      color: #eee;
+    }
+
+    .extra-info h3 {
+      margin-bottom: 1rem;
+      color: #ffcb9a;
+    }
+
+    .extra-info p, .extra-info a {
+      margin: 0.3rem 0;
+      display: block;
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .extra-info a:hover {
+      color: #ff5f6d;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+      background: #0d0d0d;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-animated">Lootex</div>
+    <p>Time To Earn Money By Playing Online</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="buy.html">Buy Coins</a>
+    <a href="withdraw.html">Withdraw</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Join PvP Matches. Win Coins. Withdraw Real Money.</h1>
+    <p>India's first coin-based Minecraft tournament platform. Start your gaming journey with Lootex today!</p>
+    <a href="buy.html"><button class="btn">Buy Coins Now</button></a>
+  </section>
+
+  <section class="leaderboard">
+    <h2>🏆 Leaderboard</h2>
+    <ul>
+      <li>🔥 Rohan_Gamer — 120 Coins</li>
+      <li>💥 PixelKing — 100 Coins</li>
+      <li>🎮 StevePro — 85 Coins</li>
+      <li>⚡ NoobMaster — 75 Coins</li>
+      <li>👑 DarkShadow — 65 Coins</li>
+    </ul>
+  </section>
+
+  <section class="withdraw-feed">
+    <h2>💸 Recent Withdrawals</h2>
+    <ul id="withdraw-list"></ul>
+  </section>
+
+  <section class="extra-info">
+    <h3>🔗 Connect With Us</h3>
+    <a href="https://instagram.com/Lootex">Instagram</a>
+    <a href="https://youtube.com/@pixaplayz">YouTube</a>
+    <a href="https://discord.gg/umqsVEzDkg">Join Support on Discord</a>
+    <h3>🎖️ Verified Influencer</h3>
+    <p>Pixa Playz</p>
+    <h3>👑 Founder</h3>
+    <p>Saksham Mishra</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Lootex. All rights reserved.
+  </footer>
+
+  <script>
+    const withdrawList = document.getElementById('withdraw-list');
+    const fakeUsers = [ "PixelKing", "DarkShadow", "Rohan_Gamer", "StevePro", "BlockHero", "PSDFAN", "CraftSlayer", "EnderX", "NoobHunter", "BlazeMaster", "RedstoneNinja", "ShadowSteve", "PixelCrafter", "CreeperSniper", "BedrockChamp", "DragonPunch", "FireCraze", "VoxelViper", "TNTBlast", "IceAssassin", "GameBhai", "NetherNinja", "SkyBlocker", "SilentPixel", "WardenHunter", "CraftDominator", "LavaSkater", "ProSmasher", "VoidWalker", "SwordCraze", "PixelBro", "MinerGenius", "NoScopeSteve", "PhantomPro", "TheBlockster",
+  "SpawnMaster", "PvPWizard", "XxMinerLordxX", "GhastRider", "HeroicPixel", "GameSlayerYT", "IronLegend", "SteveRage", "CraftyKiller", "XPGrinder", "MegaPixelz",
+  "TheChunkLord", "EndCityBoy", "SwiftMiner", "BlockSniper", "IceBlockYT", "ZombieWrecker", "ShadowFist", "ProEnderman", "CreeperKing", "GamingKhiladi", "SilentCrafter", "ThunderMiner", "SkeletonShot", "DigMaster", "BlazeArrow", "PixelShatter", "SwordZone", "RushPvP", "ChillCraft", "NetherWalker", "TNTWalaBhai", "VillagerPro", "GameFighter", "DreamShatter", "SharpnessGod", "LavaJumper", "PixelXP", "MysticSteve", "UltraCrafter", "VoidSlayer", "GoldenMiner", "LootMaster", "RedstoneKing", "CaveSniper", "BattleRohan", "GameOverlord", "WardenEscape", "TNT_Joker", "BuildItUp", "NoobBuster", "HardcoreRider", "ArmorUpYT", "TrapSetGo", "GamerDino", "EndLoot", "CreeperCraft", "PvPMasterX",
+  "GamerKaBaap", "IceGodYT", "EpicMineYT", "ZombieXpert", "ChunkBreaker", "Netherrage", "ProWithBow" ]
+;
+
+    function randomWithdraw() {
+      const name = fakeUsers[Math.floor(Math.random() * fakeUsers.length)];
+      const amount = Math.floor(Math.random() * (200 - 50 + 1)) + 50;
+      const li = document.createElement("li");
+      li.textContent = `${name} just withdrew ₹${amount}`;
+      withdrawList.prepend(li);
+      if (withdrawList.children.length > 5) {
+        withdrawList.removeChild(withdrawList.lastChild);
+      }
+    }
+
+    setInterval(randomWithdraw, 3000);
+  </script>
+  
+</body>
+</html>

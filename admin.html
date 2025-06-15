@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel | Lootex</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    h1 {
+      color: #ffcb9a;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 3rem;
+    }
+    th, td {
+      padding: 0.8rem;
+      border: 1px solid #444;
+      text-align: left;
+    }
+    th {
+      background: #222;
+      color: #ff5f6d;
+    }
+    td {
+      background: #1c1c1c;
+    }
+    .btn-action {
+      padding: 0.4rem 0.8rem;
+      margin: 0 0.3rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .accept {
+      background-color: #28a745;
+      color: white;
+    }
+    .reject {
+      background-color: #dc3545;
+      color: white;
+    }
+    .accepted {
+      background-color: #163d2d !important;
+    }
+    .rejected {
+      background-color: #3a1c1c !important;
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lootex Admin Panel</h1>
+
+  <h2>🪙 Buy Transactions</h2>
+  <table id="buyTable">
+    <tr><th>IGN</th><th>Coins</th><th>Time</th></tr>
+  </table>
+
+  <h2>💸 Withdraw Requests</h2>
+  <table id="withdrawTable">
+    <tr><th>IGN</th><th>Amount</th><th>Method</th><th>ID</th><th>Time</th><th>Action</th></tr>
+  </table>
+
+  <script>
+    const buyData = JSON.parse(localStorage.getItem("buyData") || "[]");
+    const withdrawData = JSON.parse(localStorage.getItem("withdrawData") || "[]");
+
+    const buyTable = document.getElementById("buyTable");
+    buyData.forEach(entry => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${entry.ign}</td><td>${entry.coins}</td><td>${entry.time}</td>`;
+      buyTable.appendChild(row);
+    });
+
+    const withdrawTable = document.getElementById("withdrawTable");
+    withdrawData.forEach((entry, index) => {
+      const row = document.createElement("tr");
+      row.setAttribute("id", `withdraw-row-${index}`);
+
+      row.innerHTML = `
+        <td>${entry.ign}</td>
+        <td>${entry.amount}</td>
+        <td>${entry.method}</td>
+        <td>${entry.paymentId || "N/A"}</td>
+        <td>${entry.time}</td>
+        <td>
+          <button class="btn-action accept" onclick="acceptWithdraw(${index})">✔️ Accept</button>
+          <button class="btn-action reject" onclick="rejectWithdraw(${index})">❌ Reject</button>
+        </td>
+      `;
+      withdrawTable.appendChild(row);
+    });
+
+    function acceptWithdraw(index) {
+      const row = document.getElementById(`withdraw-row-${index}`);
+      row.classList.add("accepted");
+      row.querySelectorAll(".btn-action").forEach(btn => btn.remove()); // Remove buttons after action
+    }
+
+    function rejectWithdraw(index) {
+      const row = document.getElementById(`withdraw-row-${index}`);
+      row.classList.add("rejected");
+      row.querySelectorAll(".btn-action").forEach(btn => btn.remove()); // Remove buttons after action
+    }
+  </script>
+</body>
+</html>
